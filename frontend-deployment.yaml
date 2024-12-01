@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: madhurisomannagari/multiple-containers-frontend:latest  # Replace with your correct image
+          ports:
+            - containerPort: 80
+          env:
+            - name: FRONTEND_ENV
+              value: "production"  # Add your environment variables here if needed
+

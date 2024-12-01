@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: madhurisomannagari/multiple-containers-backend:latest  # Replace with your correct image
+          ports:
+            - containerPort: 8080  # Change if your backend uses a different port
+          env:
+            - name: BACKEND_ENV
+              value: "production"  # Add your environment variables here if needed
+

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./Techdome-backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+
+  frontend:
+    build: ./Techdome-frontend
+    container_name: frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  database:
+    image: mongo:latest
+    container_name: database
+    ports:
+      - "27017:27017"  # MongoDB default port
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+    command: ["mongod", "--tlsMode", "disabled"]  # Disable TLS/SSL
+
